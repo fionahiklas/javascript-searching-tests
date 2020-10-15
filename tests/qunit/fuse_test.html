@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Fuse Test Suite</title>
+    <link rel="stylesheet" href="/css/qunit.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="/javascript/qunit.js"></script>
+    <script src="/javascript/fuse.js"></script>
+
+    <script>
+
+      const simple_list = [
+          { title: 'The colour of magic', author: 'Terry Pratchett' },
+          { title: 'The light fantastic', author: 'Terry Pratchett' }
+      ];
+      const simple_options = {
+          includeScore: true,
+          keys: [ 'title', 'author' ]
+      };
+
+      QUnit.module('fuse', function() {
+          QUnit.test('should load a simple list', function(assert) {
+              const fuse = new Fuse(simple_list, simple_options)
+              const result = fuse.search('igh');
+              assert.ok(result, 'result should not be null');
+              assert.equal(result.length, 1, 'result should be of length 1');
+          });
+      });
+    </script>
+  </body>
+</html>

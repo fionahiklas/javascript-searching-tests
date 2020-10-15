@@ -46,6 +46,7 @@ yarn add --dev qunit
 ### Javascript
 
 * [async and await](https://javascript.info/async-await)
+* [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 
 
 ### Tools
@@ -54,6 +55,11 @@ yarn add --dev qunit
 * [npm config](https://docs.npmjs.com/cli/config)
 * [Yarn](https://yarnpkg.com)
 
+
+### Testing
+
+* [QUnit introduction](https://qunitjs.com/intro/)
+* [QUnit API](https://api.qunitjs.com)
 
 ### Node
 
