@@ -1,0 +1,9 @@
+{
+  "name": "javascript-searching-tests",
+  "version": "0.0.1",
+  "description": "Testing searching framework in JavaScript",
+  "main": "index.js",
+  "repository": "https://github.com/fionahiklas/javascript-searching-tests",
+  "author": "Fiona Bianchi <fiona@hiklas.co.uk>",
+  "license": "Apache 2.0"
+}
