@@ -19,7 +19,7 @@ const init = async () => {
             directory: {
                 path: [
                     'public',
-                    'test/qunit'
+                    'tests/qunit'
                 ],
                 listing: false
             }
