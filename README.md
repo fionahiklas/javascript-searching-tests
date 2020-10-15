@@ -22,9 +22,31 @@ export PATH=$PATH:~/.npm/bin
 ```
 
 
+### Adding Packages
+
+Adding the package using yarn
+
+```
+yarn add @hapi/hapi
+yarn add @hapi/inert
+yarn add fuse.js
+```
+
+Development packages
+
+```
+yarn add --dev qunit
+```
+
+
 
 
 ## References
+
+### Javascript
+
+* [async and await](https://javascript.info/async-await)
+
 
 ### Tools
 
@@ -33,6 +55,20 @@ export PATH=$PATH:~/.npm/bin
 * [Yarn](https://yarnpkg.com)
 
 
+### Node
+
+* [Package.json format](https://nodesource.com/blog/the-basics-of-package-json-in-node-js-and-npm/)
+
+
 ### Packages
 
-* [Hapi getting started](https://content.nanobox.io/getting-started-with-hapi-js/)
+* [Hapi getting started](https://hapi.dev/tutorials/?lang=en_US)
+* [Fuse installation](https://fusejs.io/getting-started/installation.html)
+* [Qunit](https://qunitjs.com)
+* [Inert package](https://hapi.dev/module/inert/)
+* [Hapi Inert](https://github.com/hapijs/inert)
+* [Inert API](https://hapi.dev/module/inert/api/?v=6.0.3)
+
+
+
+

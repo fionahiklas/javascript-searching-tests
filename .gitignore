@@ -1,8 +1,7 @@
 # Backup
 *~
 .\#*
- 
-
+\#*
 
 # IDE 
 .idea
@@ -10,6 +9,9 @@
 .bundle
 .DS_Store
 
-# Extra just
+# Extra junk
 *.log
+
+# Installed packages
+node_modules
 

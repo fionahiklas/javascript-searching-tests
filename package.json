@@ -5,5 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/fionahiklas/javascript-searching-tests",
   "author": "Fiona Bianchi <fiona@hiklas.co.uk>",
-  "license": "Apache 2.0"
+  "license": "Apache 2.0",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.1",
+    "@hapi/inert": "^6.0.3",
+    "fuse.js": "^6.4.1"
+  },
+  "devDependencies": {
+    "qunit": "^2.11.3"
+  }
 }
