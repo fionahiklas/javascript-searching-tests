@@ -18,11 +18,18 @@
           { title: 'The colour of magic', author: 'Terry Pratchett' },
           { title: 'The light fantastic', author: 'Terry Pratchett' }
       ];
+      
       const simple_options = {
           includeScore: true,
           keys: [ 'title', 'author' ]
       };
 
+      const vehicle_options = {
+          includeScore: true,
+          keys: [ 'make', 'model' ]
+      };
+      
+      
       QUnit.module('fuse', function() {
           QUnit.test('should load a simple list', function(assert) {
               const fuse = new Fuse(simple_list, simple_options)
@@ -30,6 +37,65 @@
               assert.ok(result, 'result should not be null');
               assert.equal(result.length, 1, 'result should be of length 1');
           });
+
+          QUnit.test('should load a large file', function(assert) {
+              // Tells QUnit that all of this is async and we need to wait for done()
+              assert.async();
+
+              var done_test = false;
+              const start_load = Date.now();
+              console.log('Going to try and load data ...');
+              
+              fetch('/data/vehicles-reduceddata.json').then(function(response) {
+                  console.log('... loaded the data :)');
+                  
+                  const stop_load = Date.now();
+                  const data = response.json();
+                  console.log(`Time taken to load data: ${stop_load - start_load}`);
+
+                  assert.ok(data, 'data should load ok');
+              
+                  const start_fuse = Date.now();
+                  const fuse = new Fuse(data, vehicle_options);
+                  const stop_fuse = Date.now();
+                  console.log(`Time taken to create fuse: ${stop_fuse - start_fuse}`);
+              
+                  const start_search = Date.now();
+                  const result = fuse.search('Wib');
+                  const stop_search = Date.now();
+                  console.log(`Time taken to search fuse: ${stop_search - start_search}`);
+
+                  assert.ok(result, 'result should be non-nil');
+                  assert.equal(result.length,0, 'No matches expected');
+
+                  const start_search_2 = Date.now();
+                  const result_2 = fuse.search('or');
+                  const stop_search_2 = Date.now();
+                  console.log(`Time taken to search fuse: ${stop_search_2 - start_search_2}`);
+                  
+                  assert.ok(result_2, 'result should be non-nil');
+                  assert.ok(result_2.length>0, 'No matches expected');
+
+                  console.log(`Number of 'or' search results: ${result_2.length}`);
+                  
+                  // Tell QUnit we are finished testing now
+                  console.log('We reached the end of the test');
+                  done_test = true;
+                  done();
+                  
+              }).catch(function(err) {
+                  if (done_test == false) {
+                      console.log('... failed to load data :(');
+                      assert.ok(nil, 'failed to load');
+                      done();
+                  } else {
+                      console.log('Finishing test normally');
+                  }
+              });
+
+              console.log('Dropping out of the end of the test, wait for async');
+          });
+              
       });
     </script>
   </body>

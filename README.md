@@ -36,6 +36,16 @@ Development packages
 
 ```
 yarn add --dev qunit
+yarn add --dev csvtojson
+```
+
+
+### Converting csv to json
+
+Using the `csvtojson` command
+
+```
+yarn run csvtojson < data/vehicles-reduceddata.csv > data/vehicles-reduceddata.json
 ```
 
 
@@ -47,6 +57,8 @@ yarn add --dev qunit
 
 * [async and await](https://javascript.info/async-await)
 * [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+* [fetch data](https://npspublicsafetyjira.atlassian.net/secure/RapidBoard.jspa?rapidView=833&selectedIssue=CON-89861)
+* [Current time](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now)
 
 
 ### Tools
@@ -74,7 +86,7 @@ yarn add --dev qunit
 * [Inert package](https://hapi.dev/module/inert/)
 * [Hapi Inert](https://github.com/hapijs/inert)
 * [Inert API](https://hapi.dev/module/inert/api/?v=6.0.3)
-
+* [csvtojson](https://yarnpkg.com/package/csvtojson)
 
 
 

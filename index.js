@@ -53,6 +53,19 @@ const init = async () => {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/data/{param*}',
+        handler: {
+            directory: {
+                path: [
+                    'data'
+                ],
+                listing: false
+            }
+        }
+    });
+
     await server.start();
     console.log('Server started on %s', server.info.uri);;
 }
