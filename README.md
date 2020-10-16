@@ -88,5 +88,8 @@ yarn run csvtojson < data/vehicles-reduceddata.csv > data/vehicles-reduceddata.j
 * [Inert API](https://hapi.dev/module/inert/api/?v=6.0.3)
 * [csvtojson](https://yarnpkg.com/package/csvtojson)
 
+### Searching 
+
+* [Extended fuse search, include/fuzzy, etc](https://fusejs.io/examples.html#extended-search)
 
 
