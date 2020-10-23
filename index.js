@@ -32,6 +32,7 @@ const init = async () => {
         handler: {
             directory: {
                 path: [
+                    'node_modules/elasticlunr',
                     'node_modules/fuse.js/dist',
                     'node_modules/qunit/qunit'
                 ],

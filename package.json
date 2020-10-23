@@ -9,6 +9,7 @@
   "dependencies": {
     "@hapi/hapi": "^20.0.1",
     "@hapi/inert": "^6.0.3",
+    "elasticlunr": "^0.9.5",
     "fuse.js": "^6.4.1"
   },
   "devDependencies": {
