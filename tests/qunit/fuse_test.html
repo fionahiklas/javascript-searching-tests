@@ -60,7 +60,7 @@
               
               const start_search = Date.now();
               // This is an include search so NOT using fuzzy matching 
-              const result = fuse.search('\'Wibb');
+              const result = fuse.search('\'Wib');
               const stop_search = Date.now();
               console.log(`Time taken to search fuse (no match): ${stop_search - start_search}`);
               
@@ -69,14 +69,14 @@
               
               const start_search_2 = Date.now();
               // This is an include search so NOT using fuzzy matching
-              const result_2 = fuse.search('\'Ford');
+              const result_2 = fuse.search('\'For');
               const stop_search_2 = Date.now();
               console.log(`Time taken to search fuse (many matches): ${stop_search_2 - start_search_2}`);
               
               assert.ok(result_2, 'result should be non-nil');
               assert.equal(result_2.length, 3437, 'Lots of matches expected');
               
-              console.log(`Number of 'Ford' search results: ${result_2.length}`);
+              console.log(`Number of 'For' search results: ${result_2.length}`);
           });
               
       });

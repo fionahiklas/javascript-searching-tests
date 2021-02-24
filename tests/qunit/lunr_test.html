@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Lunr Test Suite</title>
+    <link rel="stylesheet" href="/css/qunit.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="/javascript/qunit.js"></script>
+    <script src="/javascript/lunr.js"></script>
+
+    <script>
+
+      const simple_list = [
+          { id: 1, title: 'The colour of magic', author: 'Terry Pratchett' },
+          { id: 2, title: 'The light fantastic', author: 'Terry Pratchett' }
+      ];      
+      
+      QUnit.module('lunr', function() {
+          QUnit.test('should load a simple list', function(assert) {
+              const index = lunr(function() {
+                  this.addField('title');
+                  this.addField('author');
+                  this.setRef('id'); // This is the default anyway, just being clear
+              });
+              simple_list.forEach(function(item) {
+                  index.addDoc(item);
+              });
+              // Need to use the "expand" option to effectively do a prefix match
+              const result = index.search('lig', { expand: true });
+              assert.ok(result, 'result should not be null');
+              assert.equal(result.length, 1, 'result should be of length 1');
+          });
+
+          QUnit.test('should load a large file', async function(assert) {
+
+              console.log('Going to try and load data ...');
+              
+              const start_load = Date.now();              
+              const response = await fetch('/data/vehicles-reduceddata.json');
+              console.log('... loaded the data :)');
+              const data = await response.json()                  
+              const stop_load = Date.now();
+              
+              console.log(`Time taken to load data: ${stop_load - start_load}`);
+              console.log(`Size of object: ${data.length}`);
+              assert.ok(data, 'data should load ok');
+              
+              const start_lunr = Date.now();
+              const lunr = lunr(function() {
+                  this.addField('model');
+                  this.addField('make');
+                  this.addField('year');
+                  this.setRef('id'); // This is the default anyway, just being clear
+              });
+              lunr.clearStopWords();
+
+              var id_count = 0;
+              data.forEach(function(item) {
+                  item.id = id_count; // Need to add an ID otherwise EL thinks this is the same object
+                  lunr.addDoc(item);
+                  id_count += 1; 
+              });
+              const stop_lunr = Date.now();
+              console.log(`Time taken to create elastic lunr: ${stop_lunr - start_lunr}`);
+              
+              const start_search = Date.now();
+              const result = lunr.search('Wibb', { expand: true });
+              const stop_search = Date.now();
+              console.log(`Time taken to search elastic lunr (no match): ${stop_search - start_search}`);
+              
+              assert.ok(result, 'result should be non-nil');
+              assert.equal(result.length,0, 'No matches expected');
+              
+              const start_search_2 = Date.now();
+              // Need to use the "expand" option to effectively do a prefix match
+              const result_2 = lunr.search('For', { expand: true });
+              const stop_search_2 = Date.now();
+              console.log(`Time taken to search elastic lunr (many matches): ${stop_search_2 - start_search_2}`);
+              
+              assert.ok(result_2, 'result should be non-nil');
+              assert.equal(result_2.length, 3658, 'Lots of matches expected');
+              
+              console.log(`Number of 'For' search results: ${result_2.length}`);
+          });
+              
+      });
+    </script>
+  </body>
+</html>
